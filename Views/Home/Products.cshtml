@@ -1,0 +1,44 @@
+@model Product
+<div class="container">
+
+    <div class="nav">
+        <h1>Products |
+        <a href="categories">Categories</a></h1>
+    </div>
+
+    <div class="prods-cats-body">
+        <div class="new">
+            <h2>New Product</h2>
+            <form asp-action="CreateNewProduct" asp-controller="Home" method="POST">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description"></textarea>
+                    <span asp-validation-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price">
+                    <span asp-validation-for="Price"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+        <div class="existing">
+            <ul>
+                @foreach(var product in ViewBag.AllProducts)
+                {
+                    <li>@product.Name;</li>
+                }
+            </ul>
+
+        </div>
+    </div>
+
+</div>

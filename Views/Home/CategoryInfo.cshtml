@@ -1,0 +1,31 @@
+@model ProdCatAssViewModel
+
+<div class="container">
+
+    <h1>@Model.ACategory.Name</h1>
+    <div class="container">
+        <div class="cat-prod-list">
+            <ul>
+                @foreach(var product in @Model.ACategory.Products)
+                {
+                    <li>@product.Product.Name</li>
+                }
+            </ul>
+        </div>
+        <div class="add-cat-prod-form">
+            <h3>Add Category:</h3>
+            <form asp-action="AddOneToTheOther" asp-controller="Home" method="POST">
+                <select asp-for="@Model.AAssociation.ProductId">
+                    @foreach (var cat in ViewBag.Products)
+                    {
+                        <option value="@cat.ProductId">@cat.Name</option>
+                    }
+                </select>
+                <input type="hidden" value="@Model.ACategory.CategoryId" asp-for="@Model.AAssociation.CategoryId">
+                <button type="select" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
